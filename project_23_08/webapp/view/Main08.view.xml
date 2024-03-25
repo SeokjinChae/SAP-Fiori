@@ -1,0 +1,74 @@
+<mvc:View controllerName="project2308.controller.Main08"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:t="sap.ui.table"
+    xmlns:m="sap.m">
+    <m:Page id="page" title="{i18n>title}">
+        <t:Table
+			id="idTable"
+			rows="{/list}"
+			selectionMode="MultiToggle"
+            rowActionCount="1"
+			paste="onPaste"
+			ariaLabelledBy="title">
+            <t:rowActionTemplate>
+              <t:RowAction >
+                <t:items>
+                    <t:RowActionItem 
+                        type="Delete" press="onRowDelete"/>
+                </t:items>
+              </t:RowAction>
+            </t:rowActionTemplate>
+            <t:extension>
+                <m:OverflowToolbar>
+                    <m:content>
+                        <m:Title text="Table" level="H2"/>
+                        <m:ToolbarSpacer />
+                        <m:Button 
+                            text="Add" 
+                            press="onAdd" 
+                            type="Emphasized"
+                            icon="sap-icon://add"/>
+                        <m:Button 
+                            text="Delete" 
+                            press="onDelete" 
+                            type="Emphasized"
+                            icon="sap-icon://delete"/>
+                    </m:content>
+                </m:OverflowToolbar>
+            </t:extension>
+			<t:columns>
+				<t:Column width="11rem" hAlign="End">
+					<m:Label width="100%" textAlign="Center" text="Number1" />
+					<t:template>
+						<m:Input value='{name}' />
+					</t:template>
+				</t:Column>
+                <t:Column width="11rem" hAlign="End">
+					<m:Label width="100%" textAlign="Center" text="Number2" />
+					<t:template>
+						<m:Input value='{age}' />
+					</t:template>
+				</t:Column>
+			</t:columns>
+		</t:Table>
+        
+
+        <!-- sap.m.table  -->
+        <m:Table id="idProductsTable">
+		    <m:headerToolbar>
+		    	<m:OverflowToolbar>
+		    		<m:content>
+		    			<m:Title text="Products" level="H2"/>
+		    			<m:ToolbarSpacer />
+		    		</m:content>
+		    	</m:OverflowToolbar>
+		    </m:headerToolbar>
+		    <m:columns>
+		    	<m:Column
+		    		width="12em">
+		    		<m:Text text="Product" />
+		    	</m:Column>
+		    </m:columns>
+	    </m:Table>
+    </m:Page>
+</mvc:View>

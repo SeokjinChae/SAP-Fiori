@@ -1,0 +1,7 @@
+<mvc:View controllerName="project2312.controller.Employee"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}" showNavButton="true" navButtonPress="onNavBack">
+        <Text text="Employee Page"></Text>
+    </Page>
+</mvc:View>

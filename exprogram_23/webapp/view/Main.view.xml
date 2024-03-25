@@ -1,0 +1,201 @@
+<mvc:View controllerName="exam.exprogram23.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true"
+    xmlns:t="sap.ui.table"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:c="sap.ui.core"
+    xmlns:g="sap.ui.layout.Grid"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:viz.data="sap.viz.ui5.data"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    >
+    <Page id="page" title="{i18n>title}">
+        <content>
+
+
+            <l:Grid >
+        <f:SimpleForm >
+                <VBox >
+                <Toolbar >
+                <ToolbarSpacer ></ToolbarSpacer>
+                <Button text="search" press="onSearch" icon="sap-icon://search" type="Emphasized"></Button>
+                </Toolbar>
+                    <layoutData>
+                    <l:GridData span="XL6 L4 M4 S12"></l:GridData>
+                    </layoutData>
+                    <Text text="ID"></Text>
+                    <Input id="idID"></Input>
+                    <Text text="Category Name"></Text>
+                    <Input id="idCN"></Input>
+                </VBox>
+        </f:SimpleForm>
+
+
+
+        <Panel  headerText="카테고리 조회" expandable="true" expanded="true">
+                    <layoutData>
+                    <l:GridData span="XL9 L7 M5 S3"></l:GridData>
+                    </layoutData>
+            <Table  id="categoryTable" 
+                    growing="true" 
+                    growingThreshold="3" 
+                    items="{/Categories}"
+                    selectionChange="onSelectionChange">
+                <columns>
+                    <Column>
+                        <Text text="카테고리 ID"/>
+                    </Column>
+                    <Column>
+                        <Text text="카테고리명"/>
+                    </Column>
+                    <Column>
+                        <Text text="설명"/>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{CategoryID}"/>
+                            <Text text="{CategoryName}"/>
+                            <Text text="{Description}"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </Panel>
+            </l:Grid>
+
+<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ아래 부분ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+
+            
+            <t:Table
+                rows="{product>/CategoryID}"
+                rowSelectionChange="onRowSelectionChange"
+                selectionMode="Single"
+                selectionBehavior="RowOnly"
+                paste="onPaste"
+                ariaLabelledBy="title"
+            >
+            
+            
+                <t:extension>
+                
+                    <OverflowToolbar style="Clear">
+                        <Title
+                            id="title"
+                            text="상품조회"
+                        />
+                    </OverflowToolbar>
+                </t:extension>
+                <t:columns>
+                    <t:Column width="11rem">
+                        <Label text="ID" />
+                        <t:template>
+                            <Text
+                                text="{product>/CategoryID}"
+                                wrapping="false"
+                            />
+                        </t:template>
+                    </t:Column>
+
+                    <t:Column width="11rem">
+                        <Label text="상품명" />
+                        <t:template>
+                            <Text
+                                text="{product>/ProductName}"
+                                wrapping="false"
+                            />
+                        </t:template>
+                    </t:Column>
+
+                    <t:Column width="11rem">
+                        <Label text="재고" />
+                        <t:template>
+                            <Text
+                                text="{product>/UnitsInStock}"
+                                wrapping="false"
+                            />
+                        </t:template>
+                    </t:Column>
+
+                    <t:Column width="11rem">
+                        <Label text="단위 주문 수량" />
+                        <t:template>
+                            <Text
+                                text="{product>/UnitsOnOrder}"
+                                wrapping="false"
+                            />
+                        </t:template>
+                    </t:Column>
+
+                    <t:Column width="11rem">
+                        <Label text="주문 가능여부" 
+                        textAlign="Center"/>
+                        <!-- 가운대로 안모임 -->
+                        <t:template>
+                            <c:Icon src ="{=${UnitsInStock}>=${UnitsOnOrder} ? 'sap-icon://circle-task' : 'sap-icon://decline'}"
+                            color="{=${UnitsInStock}>=${UnitsOnOrder} ? 'rgb(27, 234, 33)' : 'rgb(234, 52, 27)'}"/>
+                        </t:template>
+                    </t:Column>
+                </t:columns>
+            </t:Table>
+
+
+<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ차트 부분ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+
+        <viz:VizFrame id="idLineChart" width="300px" height="300px"
+        vizType="pie"
+        uiConfig="{'applicationSet':'fiori'}"
+        vizProperties="{
+            'title' : {'visible' : true, 'text': 'My Chart' },
+            'legendGroup' : {
+                'layout' : {'position' : 'left'}
+            },
+            'plotArea' : {
+                'drawingEffect' : 'glossy',
+                'dataLabel' : {'visible' : true, 'type' : 'value'},
+                'colorPalette' : ['#A566FF6' ,'#F2CB61']
+            }
+        }"
+        >
+        
+
+        <viz:dataset>
+            <viz.data:FlattenedDataset data="{/Sales_by_Categories}" >
+                    <!-- x축 -->
+                <viz.data:dimensions>
+                    <viz.data:DimensionDefinition name="ProductName" value="{ProductName}"/>
+                </viz.data:dimensions>
+
+                    <!-- y축 -->
+                <viz.data:measures>
+                    <viz.data:MeasureDefinition name="ProductSales" value="{ProductSales}"/>
+                </viz.data:measures>
+            </viz.data:FlattenedDataset>
+        </viz:dataset>
+
+        <viz:feeds>
+        <!-- 
+            uid에 들어갈 수 있는 값
+            categoryAxis, valueAxis : line, column , stacked_bar //viz type
+            color       , size      : pie, dount //viz type
+         -->
+            <viz.feeds:FeedItem uid="color" type="Dimension" values="ProductName"/>
+            <viz.feeds:FeedItem uid="size" type="Measure" values="ProductSales"/>
+        </viz:feeds>
+
+        </viz:VizFrame>
+
+
+
+
+
+        </content>
+    </Page>
+</mvc:View>

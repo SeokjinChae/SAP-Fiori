@@ -1,0 +1,155 @@
+<mvc:View controllerName="odata.project2309.controller.Main09"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:layout="sap.ui.layout"
+    height="100%"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:c ="sap.ui.core">
+<f:DynamicPage id="dynamicPageId" headerExpanded="{/headerExpanded}" toggleHeaderOnTitleClick="{/titleClickable}">
+			<!-- DynamicPage Title -->
+			<f:title>
+				<f:DynamicPageTitle>
+					<f:heading>
+						<Title text="Header Title"/>
+					</f:heading>
+                    <f:actions>
+                    <Button text="Search" type="Emphasized" press="onGoDetail"></Button>
+                    </f:actions>
+				</f:DynamicPageTitle>
+			</f:title>
+			<!-- DynamicPage Header -->
+			<f:header>
+				<f:DynamicPageHeader pinnable="true">
+					<!-- <layout:HorizontalLayout allowWrapping="true">
+						<layout:VerticalLayout class="sapUiMediumMarginEnd">
+                        <Label text="OrderID"></Label>
+                        <Input id="idOrderID" 
+                            showValueHelp="true" 
+                            valueHelpRequest="onValueHelpRequest"></Input>
+
+						</layout:VerticalLayout>
+
+                        						<layout:VerticalLayout class="sapUiMediumMarginEnd">
+                        <Label text="CustomerID"></Label>
+                        <Input id="idCustomerID" 
+                            showValueHelp="true" 
+                            valueHelpRequest="onValueHelpRequest"></Input>
+
+						</layout:VerticalLayout>
+
+						<layout:VerticalLayout>
+							<ObjectAttribute title="Availability"/>
+							<ObjectStatus text="In Stock" state="Success" />
+						</layout:VerticalLayout>
+					</layout:HorizontalLayout> -->
+                    <fb:FilterBar id="filterbar" persistencyKey="myPersKey" useToolbar="false" search=".onSearch" filterChange=".onFilterChange" afterVariantLoad=".onAfterVariantLoad">
+							<fb:filterGroupItems>
+								<fb:FilterGroupItem name="OrderID" label="Order ID" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+                                        <Input id="idOrderID" 
+                                        showValueHelp="true" 
+                                        value="{search>/OrderID}"
+                                        valueHelpRequest="onValueHelpRequest"></Input>
+									</fb:control>
+								</fb:FilterGroupItem>
+                                        <fb:FilterGroupItem name="CustomerID" label="CustomerID" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+                                        <Input id="idCustomerID"
+                                        value="{search>/CustomerID}"
+                                        showValueHelp="true" 
+                                        valueHelpRequest="onValueHelpRequest"></Input>
+									</fb:control>
+								</fb:FilterGroupItem>
+                                	<fb:FilterGroupItem name="OrderDate" label="OrderDate" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+                                    <DateRangeSelection 
+                                    id="idOrderDate" 
+                                    displayFormat="yyyy.MM.dd"
+                                    dateValue="{search>/OrderDate_start}"
+                                    secondDateValue="{search>/OrderDate_end}"></DateRangeSelection>
+									</fb:control>
+								</fb:FilterGroupItem>
+							</fb:filterGroupItems>
+						</fb:FilterBar>
+				</f:DynamicPageHeader>
+			</f:header>
+			<f:content>
+            <VBox>
+				<Table id="idTable"
+						sticky="HeaderToolbar,ColumnHeaders"
+						inset="false"
+						items="{/Orders}"
+                        mode="SingleSelectMaster"
+                        selectionChange="onSelectionChange"
+					    class="sapFDynamicPageAlignContent"
+					    width="auto">
+                       <!-- 						items="{
+                            path:'/Orders',
+                            filters :[{
+                                path:'CustomerID',operator:'EQ',value1:'VINET'}
+                                ],
+                                sorter:{ path : 'EmployeeID', descending: false}
+                        }" -->
+					<headerToolbar>
+						<Toolbar>
+							<Title text="Products" level="H2"/>
+						</Toolbar>
+					</headerToolbar>
+					<columns>
+						<Column>
+							<Text text="Order Id" />
+						</Column>
+                        <Column>
+							<Text text="Customer Id" />
+						</Column>
+                        <Column>
+							<Text text="Employee Id" />
+						</Column>
+                        <Column>
+							<Text text="Order Date" />
+						</Column>
+                        <Column>
+							<Text text="RequirdDate" />
+						</Column>
+                        <Column>
+							<Text text="ShippedDate" />
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+                                <Text text="{OrderID}" />
+                                <Text text="{CustomerID}" />
+                                <Text text="{EmployeeID}" />
+                                <Text text="{
+                                        path : 'OrderDate',
+                                        formatter: '.fnDateToString'}" />
+                                <Text text="{
+                                        path : 'RequiredDate',
+                                        formatter: '.fnDateToString'}" />
+                                <Text text="{
+                                        path : 'ShippedDate',
+                                        formatter: '.fnDateToString'}" />
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+                <c:Fragment fragmentName = "odata.project2309.view.fragment.Dialog"/>
+                </VBox>
+			</f:content>
+			<!-- DynamicPage Footer -->
+			<f:footer>
+				<OverflowToolbar>
+					<Button icon="sap-icon://message-popup"
+							text="{/messagesLength}"
+							type="Emphasized"
+							press="onMessageButtonPress"
+							visible="{= !!${/messagesLength}}"/>
+					<ToolbarSpacer/>
+					<Button type="Accept" text="Accept"/>
+					<Button type="Reject" text="Reject"/>
+				</OverflowToolbar>
+			</f:footer>
+		</f:DynamicPage>
+</mvc:View>

@@ -1,0 +1,150 @@
+<mvc:View controllerName="sync.project2302.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:layout="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:table="sap.ui.table"
+    xmlns:u="sap.ui.unified"
+    >
+
+    <Page id="page" title="{i18n>title}">
+
+        <content >
+        <!-- <Button text="클릭"/>
+        <Button type="Emphasized" text="조회"/> -->
+            <layout:VerticalLayout width="300px">
+				<Title id="idTitle" text="{subTitle}"></Title>
+                <Input id="idInput0"/>
+                <Select id="idSelect" width= "100%" showSecondaryValues="true" items="{test>/datas}">
+						<core:ListItem key="{test>key}" text="{test>text}" additionalText="{test>additionalText}"/> 
+						<!--  %%%%%%%%%%%%%%%%5oo> oo   모든 인덱스 접근하기 위한 상대경로%%%%%%%%%%%%%%%%%%%%% -->
+                        <!-- <core:ListItem key="plus" text="+" additionalText="plus"/>
+                        <core:ListItem key="minus" text="-" additionalText="minus"/>
+                        <core:ListItem key="multiple" text="*" additionalText="multiple"/>
+                        <core:ListItem key="divide" text="/" additionalText="divide"/> -->
+                </Select >
+                <Input id="idInput1"/>
+                <Button text="계산" width="100%" press="onClick"/>
+            </layout:VerticalLayout>
+
+            <table:Table
+				rows="{local>/history}"
+				selectionMode="MultiToggle"
+				paste="onPaste"
+				ariaLabelledBy="title">	
+
+				<table:columns>
+					<table:Column hAlign="End">
+						<Label width="100%" textAlign="Center" text="num1" />
+						<table:template>
+							<Text text="{local>num1}" wrapping="false" />
+						</table:template>
+					</table:Column>
+					<table:Column hAlign="Center">
+						<Label text="oper" />
+						<table:template>
+							<Text text="{local>oper}" wrapping="false" />
+						</table:template>
+					</table:Column>
+					<table:Column hAlign="End">
+						<Label text="num2" />
+						<table:template>
+							<Text text="{local>num2}" wrapping="false" />
+						</table:template>
+					</table:Column>
+					<table:Column hAlign="End">
+						<Label text="result" />
+						<table:template>
+							<Text text="{local>result}" wrapping="false" />
+						</table:template>
+					</table:Column>
+					<table:Column hAlign="Center">
+						<Label text="Status" />
+						<table:template>
+								<core:Icon
+									src="sap-icon://circle-task-2"
+									class="size1"
+									color="{
+										path : 'local>result',
+										formatter : '.fnColorFormat'
+									}"
+									visible="{= ${local>result} >100 }" >
+
+									<!-- 
+										color="{= ${local>result}>100 ? '#1DDB16':'#FF5E00'}"
+									 -->
+									<core:layoutData>
+										<FlexItemData growFactor="1" />
+									</core:layoutData>
+								</core:Icon>
+						</table:template>
+					</table:Column>
+					
+				</table:columns>
+			</table:Table>
+<!--   mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm -->
+<Table id="idProductsTable"
+		inset="false"
+		items="{
+			path: '/ProductCollection',
+			sorter: {
+				path: 'Name'
+			}
+		}">
+		<headerToolbar>
+			<OverflowToolbar>
+				<content>
+					<Title text="Products" level="H2"/>
+					<ToolbarSpacer />
+					<ComboBox id="idPopinLayout"
+						placeholder="Popin layout options"
+						change="onPopinLayoutChanged">
+						<items>
+							<core:Item  text="Block"
+								key="Block"/>
+							<core:Item  text="Grid Large"
+								key="GridLarge"/>
+							<core:Item  text="Grid Small"
+								key="GridSmall"/>
+						</items>
+					</ComboBox>
+					<Label text="Sticky options:" />
+					<CheckBox text="ColumnHeaders"
+						select="onSelect"/>
+					<CheckBox text="HeaderToolbar"
+						select="onSelect"/>
+					<CheckBox text="InfoToolbar"
+						select="onSelect"/>
+					<ToggleButton id="toggleInfoToolbar"
+						text="Hide/Show InfoToolbar"
+						press="onToggleInfoToolbar" />
+				</content>
+			</OverflowToolbar>
+		</headerToolbar>
+		<columns>
+			<Column
+				hAlign="End">
+				<Text text="Price" />
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem vAlign="Middle">
+				<cells>
+					<Text text="{SupplierName}" />
+
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+        </content>
+<!-- mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm -->
+        <footer>
+            <Toolbar >
+            <ToolbarSpacer />
+            <Button text="보내기"/>
+            </Toolbar>
+        </footer>
+
+    </Page>
+
+</mvc:View>

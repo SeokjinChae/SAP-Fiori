@@ -1,0 +1,120 @@
+<mvc:View
+    controllerName="project2314.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:t="sap.ui.table"
+    xmlns:l="sap.ui.layout"
+>
+    <Page
+        id="page"
+        title="{i18n>title}"
+    >
+        <content>
+            <l:Grid
+                binding="{/PersonCollection}"
+                class="sapUiSmallMarginTop"
+                hSpacing="2"
+                defaultSpan="L6 M6 S10"
+            >
+                <l:content>
+                    <Input id="Productnoid" description="Memid" value="{data>/Memid}">
+                        <layoutData>
+                            <l:GridData span="" />
+                        </layoutData>
+                    </Input>
+
+                    <Input id="Productnameid" description="Memnm" value="{data>/Memnm}">
+                        <layoutData>
+                            <l:GridData span="" />
+                        </layoutData>
+                    </Input>
+
+                    <Input id="Fnameid" description="Telno" value="{data>/Telno}">
+                        <layoutData>
+                            <l:GridData span="" />
+                        </layoutData>
+                    </Input>
+
+                    <Input id="Lnameid" description="Email" value="{data>/Email}">
+                        <layoutData>
+                            <l:GridData span="" />
+                        </layoutData>
+                    </Input>
+
+                </l:content>
+            </l:Grid>
+            <!-- products 조회 -->
+            <t:Table
+                rows="{/Member}"
+                rowSelectionChange="onRowSelectionChange"
+                selectionMode="Single"
+                selectionBehavior="RowOnly"
+                paste="onPaste"
+                ariaLabelledBy="title"
+            >
+                <t:extension>
+                    <OverflowToolbar style="Clear">
+                        <Title
+                            id="title"
+                            text="Products"
+                        />
+                        <ToolbarSpacer ></ToolbarSpacer>
+                        <Button text="Read Entity" type="Emphasized" press="onEntity"></Button>
+                        <Button text="EntitySet" type="Emphasized" press="onEntitySet"></Button>
+                        <Button text="Create" type="Emphasized" press="onCreate"></Button>
+                        <Button text="Update" type="Emphasized" press="onUpdate"></Button>
+                        <Button text="Delete" type="Emphasized" press="onDelete"></Button>
+                        <Button icon="sap-icon://reset" type="Emphasized" press="onClear"></Button>
+                    </OverflowToolbar>
+                </t:extension>
+                <t:columns>
+                    <t:Column width="11rem">
+                        <Label text="Memid" />
+                        <t:template>
+                            <Text
+                                text="{Memid}"
+                                wrapping="false"
+                            />
+                        </t:template>
+                    </t:Column>
+
+                    <t:Column width="11rem">
+                        <Label text="Memnm" />
+                        <t:template>
+                            <Text
+                                text="{Memnm}"
+                                wrapping="false"
+                            />
+                        </t:template>
+                    </t:Column>
+
+                                        <t:Column width="11rem">
+                        <Label text="Telno" />
+                        <t:template>
+                            <Text
+                                text="{Telno}"
+                                wrapping="false"
+                            />
+                        </t:template>
+                    </t:Column>
+
+                                        <t:Column width="11rem">
+                        <Label text="Email" />
+                        <t:template>
+                            <Text
+                                text="{Email}"
+                                wrapping="false"
+                            />
+                        </t:template>
+                    </t:Column>
+
+
+
+
+
+                </t:columns>
+            </t:Table>
+        </content>
+    </Page>
+</mvc:View>

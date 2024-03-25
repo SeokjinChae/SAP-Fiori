@@ -1,0 +1,102 @@
+<c:FragmentDefinition xmlns:c ="sap.ui.core" xmlns="sap.m"
+>
+<Dialog id="idDialog"
+        contentWidth="40%"
+        title="제목"
+        contentHeight="50%"
+        draggable="true"
+        resizable="true">
+    <content>
+        				<Table id="idTable1"
+						sticky="HeaderToolbar,ColumnHeaders"
+						inset="false"
+						items="{/Products}"
+                        mode="SingleSelectMaster"
+                        selectionChange="onSelectionChange"
+					    class="sapFDynamicPageAlignContent"
+					    width="auto">
+                       <!-- 						items="{
+                            path:'/Orders',
+                            filters :[{
+                                path:'CustomerID',operator:'EQ',value1:'VINET'}
+                                ],
+                                sorter:{ path : 'EmployeeID', descending: false}
+                        }" -->
+					<headerToolbar>
+						<Toolbar>
+							<Title text="Products" level="H2"/>
+						</Toolbar>
+					</headerToolbar>
+					<columns>
+						<Column>
+                        <Text text="ProductID" />
+						</Column>
+                        <Column>
+                        <Text text="ProductName" />
+						</Column>
+                        <Column>
+                        <Text text="SupplierID" />
+						</Column>
+                        <Column>
+                        <Text text="CategoryID" />
+						</Column>
+                        <Column>
+                        <Text text="QuantityPerUnit" />
+						</Column>
+                        <Column>
+                        <Text text="UnitPrice" />
+						</Column>
+                        <Column>
+                        <Text text="UnitsInStock" />
+						</Column>
+                        <Column>
+                        <Text text="UnitsOnOrder" />
+						</Column>
+                        <Column>
+                        <Text text="ReorderLevel" />
+						</Column>
+                        <Column>
+                        <Text text="Discontinued" />
+						</Column>
+                        <Column>
+                        <Text text="Status" />
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+                                <Text text="{ProductID}" />
+                                <Text text="{ProductName}" />
+                                <Text text="{SupplierID}" />
+                                <Text text="{CategoryID}" />
+                                <Text text="{QuantityPerUnit}" />
+                                <Text text="{UnitPrice}" />
+                                <Text text="{UnitsInStock}" />
+                                <Text text="{UnitsOnOrder}" />
+                                <Text text="{ReorderLevel}" />
+                                <Text text="{
+                                    path : 'Discontinued',
+                                    formatter: '.transformDiscontinued'
+                                }" />
+                                <c:Icon src ="{=${UnitPrice}>15 ? 'sap-icon://thumb-up' : 'sap-icon://thumb-down'}"
+                                        color="{=${UnitPrice}>15 ? 'rgb(27, 234, 33)' : 'rgb(234, 52, 27)'}"/>
+                                <!-- <Text text="{
+                                        path : 'OrderDate',
+                                        formatter: '.fnDateToString'}" />
+                                <Text text="{
+                                        path : 'RequiredDate',
+                                        formatter: '.fnDateToString'}" />
+                                <Text text="{
+                                        path : 'ShippedDate',
+                                        formatter: '.fnDateToString'}" /> -->
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+    </content>
+
+    <endButton>
+        <Button text="close" icon="sap-icon://decline" press="onClose"></Button>
+    </endButton>
+</Dialog>
+</c:FragmentDefinition>

@@ -1,0 +1,75 @@
+<c:FragmentDefinition xmlns:c ="sap.ui.core" xmlns="sap.m"
+>
+<Dialog id="idCustomerID1"
+        contentWidth="40%"
+        title="제목"
+        contentHeight="50%"
+        draggable="true"
+        resizable="true">
+    <content>
+        				<Table id="idTable1"
+						sticky="HeaderToolbar,ColumnHeaders"
+						inset="false"
+						items="{/Orders}"
+                        mode="SingleSelectMaster"
+                        selectionChange="onSelectionChange"
+					    class="sapFDynamicPageAlignContent"
+					    width="auto">
+                       <!-- 						items="{
+                            path:'/Orders',
+                            filters :[{
+                                path:'CustomerID',operator:'EQ',value1:'VINET'}
+                                ],
+                                sorter:{ path : 'EmployeeID', descending: false}
+                        }" -->
+					<headerToolbar>
+						<Toolbar>
+							<Title text="Products" level="H2"/>
+						</Toolbar>
+					</headerToolbar>
+					<columns>
+						<Column>
+							<Text text="Order Id" />
+						</Column>
+                        <Column>
+							<Text text="Customer Id" />
+						</Column>
+                        <Column>
+							<Text text="Employee Id" />
+						</Column>
+                        <Column>
+							<Text text="Order Date" />
+						</Column>
+                        <Column>
+							<Text text="RequirdDate" />
+						</Column>
+                        <Column>
+							<Text text="ShippedDate" />
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+                                <Text text="{OrderID}" />
+                                <Text text="{CustomerID}" />
+                                <Text text="{EmployeeID}" />
+                                <Text text="{
+                                        path : 'OrderDate',
+                                        formatter: '.fnDateToString'}" />
+                                <Text text="{
+                                        path : 'RequiredDate',
+                                        formatter: '.fnDateToString'}" />
+                                <Text text="{
+                                        path : 'ShippedDate',
+                                        formatter: '.fnDateToString'}" />
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+    </content>
+
+    <endButton>
+        <Button text="close" icon="sap-icon://decline" press="onClose"></Button>
+    </endButton>
+</Dialog>
+</c:FragmentDefinition>

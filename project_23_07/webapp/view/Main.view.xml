@@ -1,0 +1,45 @@
+<mvc:View controllerName="project2307.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:t="sap.ui.table">
+    <Page id="page" title="{i18n>title}">
+
+    <VBox >
+		<Input value="{/inpValue}"></Input>
+		<Button text="모델세팅" press="onSetData"></Button>
+		<Text  text="{now>/textValue}"></Text>
+        <!-- <Text text="{test>/name/firstName} {test>/name/lastName}"></Text> -->
+        <!-- <Text text="{test>/datas/2/tel}"></Text> -->
+        <!-- <Text text="{oo>/list/0/name}님 안녕하세요"></Text> -->
+    </VBox>
+
+    <t:Table
+				rows="{test>/datas}"
+				selectionMode="MultiToggle"
+				paste="onPaste"
+				ariaLabelledBy="title">
+				<t:extension>
+					<OverflowToolbar style="Clear">
+						<Title id="title" text="Products"/>
+					</OverflowToolbar>
+				</t:extension>
+				<t:columns>
+					<t:Column width="11rem">
+						<Label text="Name" />
+						<t:template>
+							<Text text="{test>name}" wrapping="false" />
+						</t:template>
+
+					</t:Column>
+                        <t:Column width="11rem">
+						<Label text="age" />
+						<t:template>
+							<Text text="{test>age}" wrapping="false" />
+						</t:template>
+					</t:Column>
+
+				</t:columns>
+			</t:Table>
+
+    </Page>
+</mvc:View>

@@ -1,0 +1,14 @@
+<mvc:View controllerName="project2303.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:layout="sap.ui.layout"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <layout:VerticalLayout>
+                <Input id="idInput" />
+                <Button text="작성 완료" press="onClick" />
+                <Text id="idText" />
+            </layout:VerticalLayout>
+        </content>
+    </Page>
+</mvc:View>

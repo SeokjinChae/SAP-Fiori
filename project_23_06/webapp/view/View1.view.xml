@@ -1,0 +1,27 @@
+<mvc:View controllerName="project2306.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m" xmlns:c="sap.ui.core">
+
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <Text text="여기는 메인뷰 입니다."></Text>
+            <mvc:XMLView viewName="project2306.view.HelloPanel"/>
+            <c:Fragment fragmentName = "project2306.view.fragment.HelloFrag"/>
+
+
+<!-- 팝업 호출 -->
+            <c:Fragment fragmentName = "project2306.view.fragment.Dialog"/>
+            <Button text="view 호출팝업" press="onOpenDialog"></Button>
+
+            
+            <Button text="controller에서 팝업 오픈" press="onOpenDialog_con"></Button>
+
+
+            <c:Fragment fragmentName = "project2306.view.fragment.Name"/>
+            <Button text="이름 출력 오픈" press="onOpenDialog"></Button>
+
+            
+        </content>
+    </Page>
+
+</mvc:View>

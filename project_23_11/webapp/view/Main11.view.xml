@@ -1,0 +1,168 @@
+<mvc:View xmlns:core="sap.ui.core" controllerName="project2311.controller.Main11"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:viz.data="sap.viz.ui5.data"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:cm="sap.suite.ui.commons"
+    xmlns:t="sap.ui.table"
+    xmlns:micro="sap.suite.ui.microchart">
+
+    <Page id="page" title="{i18n>title}">
+        <content >
+        <cm:ChartContainer id="chartContainer" showFullScreen="true" title="Unit Chart">
+            <cm:content>
+                <!--  차트 부분-->
+                <cm:ChartContainerContent icon="sap-icon://bar-chart" title="chart">
+                    <cm:content>
+                            <viz:VizFrame id="idLineChart1" width="650px" height="650px"
+        vizType="stacked_column"
+        uiConfig="{'applicationSet':'fiori'}"
+        vizProperties="{
+            'title' : {'visible' : true, 'text': 'Units Chart' },
+            'legendGroup' : {
+                'layout' : {'position' : 'left'}
+            },
+            'plotArea' : {
+                'drawingEffect' : 'glossy',
+                'dataLabel' : {'visible' : true, 'type' : 'value'},
+                'colorPalette' : ['#A566FF6' ,'#F2CB61']
+            }
+        }"
+        >
+
+        <viz:dataset>
+            <viz.data:FlattenedDataset data="{/Products}" >
+                    <!-- x축 -->
+                <viz.data:dimensions>
+                    <viz.data:DimensionDefinition name="Name" value="{ProductName}"/>
+                </viz.data:dimensions>
+
+                    <!-- y축 -->
+                <viz.data:measures>
+                    <viz.data:MeasureDefinition name="Stock" value="{UnitsInStock}"/>
+                    <viz.data:MeasureDefinition name="Order" value="{UnitsOnOrder}"/>
+                </viz.data:measures>
+            </viz.data:FlattenedDataset>
+        </viz:dataset>
+
+        <viz:feeds>
+        <!-- 
+            uid에 들어갈 수 있는 값
+            categoryAxis, valueAxis : line, column , stacked_bar //viz type
+            color       , size      : pie, dount //viz type
+         -->
+            <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Name"/>
+            <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Stock,Order"/>
+        </viz:feeds>
+
+        </viz:VizFrame>
+                    </cm:content>
+                </cm:ChartContainerContent>
+                <!--  테이블 부분-->
+                <cm:ChartContainerContent icon="sap-icon://table-view" title="table">
+                    <cm:content>
+                    <t:Table
+				rows="{/Products}"
+				selectionMode="MultiToggle"
+				paste="onPaste"
+				ariaLabelledBy="title">
+				<t:extension>
+					<OverflowToolbar style="Clear">
+						<Title id="title" text="Products"/>
+					</OverflowToolbar>
+				</t:extension>
+				<t:columns>
+					<t:Column width="11rem">
+						<Label text="ProductID" />
+						<t:template>
+							<Text text="{ProductID}" wrapping="false" />
+						</t:template>
+
+					</t:Column>
+                        <t:Column width="11rem">
+						<Label text="ProductName" />
+						<t:template>
+							<Text text="{ProductName}" wrapping="false" />
+						</t:template>
+					</t:Column>
+
+                        <t:Column width="11rem">
+						<Label text="UnitsInStock" />
+						<t:template>
+							<!-- <Text text="{UnitsInStock}" wrapping="false" /> -->
+                            <micro:RadialMicroChart 
+                            size="S" 
+                            percentage="{= ${UnitsInStock}/100}" 
+                            valueColor="{=${UnitsInStock}/10 > 0.3 ? 'Good' : 'Error'}"/>
+						</t:template>
+					</t:Column>
+                    
+                        <t:Column width="11rem">
+						<Label text="Discontinued" />
+						<t:template>
+                        <!-- <Text text="{Discontinued}" wrapping="false" /> -->
+                        <core:Icon src ="{=${Discontinued} ? 'sap-icon://chevron-phase' : 'sap-icon://choropleth-chart'}"/>
+						</t:template>
+					</t:Column>
+
+				</t:columns>
+			</t:Table>
+                    </cm:content>
+                </cm:ChartContainerContent>
+            </cm:content>
+        </cm:ChartContainer>
+
+
+
+        <viz:VizFrame id="idLineChart" width="650px" height="650px"
+        vizType="stacked_column"
+        uiConfig="{'applicationSet':'fiori'}"
+        vizProperties="{
+            'title' : {'visible' : true, 'text': 'Units Chart' },
+            'legendGroup' : {
+                'layout' : {'position' : 'left'}
+            },
+            'plotArea' : {
+                'drawingEffect' : 'glossy',
+                'dataLabel' : {'visible' : true, 'type' : 'value'},
+                'colorPalette' : ['#A566FF6' ,'#F2CB61']
+            }
+        }"
+        >
+
+        <viz:dataset>
+            <viz.data:FlattenedDataset data="{/Products}" >
+                    <!-- x축 -->
+                <viz.data:dimensions>
+                    <viz.data:DimensionDefinition name="Name" value="{ProductName}"/>
+                </viz.data:dimensions>
+
+                    <!-- y축 -->
+                <viz.data:measures>
+                    <viz.data:MeasureDefinition name="Stock" value="{UnitsInStock}"/>
+                    <viz.data:MeasureDefinition name="Order" value="{UnitsOnOrder}"/>
+                </viz.data:measures>
+            </viz.data:FlattenedDataset>
+        </viz:dataset>
+
+        <viz:feeds>
+        <!-- 
+            uid에 들어갈 수 있는 값
+            categoryAxis, valueAxis : line, column , stacked_bar //viz type
+            color       , size      : pie, dount //viz type
+         -->
+            <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Name"/>
+            <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Stock,Order"/>
+        </viz:feeds>
+
+        </viz:VizFrame>
+
+        <!-- 
+            controller 에서 생성 
+        -->
+        <viz:VizFrame id="idColChart" vizType="column"/>
+
+        </content >
+    </Page>
+</mvc:View>

@@ -1,0 +1,47 @@
+<c:FragmentDefinition xmlns:c ="sap.ui.core" xmlns="sap.m"
+    xmlns:t="sap.ui.table"
+>
+<Dialog id="idDialog"
+        contentWidth="40%"
+        title="제목"
+        contentHeight="50%"
+        draggable="true"
+        resizable="true">
+    <content>
+            <t:Table
+				rows="{popup>/results}"
+				selectionMode="Single"
+                selectionBehavior="RowOnly"
+				paste="onPaste"
+				ariaLabelledBy="title">
+				<t:extension>
+					<OverflowToolbar style="Clear">
+						<Title id="title1" text="filter 조회"/>
+					</OverflowToolbar>
+				</t:extension>
+				<t:columns>
+					<t:Column width="11rem"
+                    filterProperty="Productno"
+                    sortProperty="Productno">
+						<Label text="result" />
+						<t:template>
+							<Text text="{popup>Productno}" wrapping="false" />
+						</t:template>
+					</t:Column>
+
+                        <t:Column width="11rem">
+						<Label text="result" />
+						<t:template>
+							<Text text="{popup>Productname}" wrapping="false" />
+						</t:template>
+					</t:Column>
+				</t:columns>
+			</t:Table>
+
+    </content>
+
+    <endButton>
+        <Button text="close" icon="sap-icon://decline" press="onClose"></Button>
+    </endButton>
+</Dialog>
+</c:FragmentDefinition>

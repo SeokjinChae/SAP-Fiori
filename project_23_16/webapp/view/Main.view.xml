@@ -1,0 +1,39 @@
+<mvc:View controllerName="project2316.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <Text text="12345"></Text>
+            <Image src="../image/ka.png" width="200px"></Image>
+            <Image id="idImage" width="200px"></Image>
+
+
+            <Table  id="categoryTable" 
+                    growing="true" 
+                    growingThreshold="3" 
+                    items="{/Member}"
+                    selectionChange="onSelectionChange">
+                <columns>
+                    <Column>
+                        <Text text="Member ID"/>
+                    </Column>
+                    <Column>
+                        <Text text="Memnm"/>
+                    </Column>
+                    <Column>
+                        <Text text="Telno"/>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{Memid}"/>
+                            <Text text="{Memnm}"/>
+                            <Text text="{Telno}"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>

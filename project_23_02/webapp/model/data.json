@@ -1,0 +1,9 @@
+{   
+    "datas": [
+        {"key":"plus","text":"+","additionalText":"plus"},
+        {"key":"minus","text":"-","additionalText":"minus"},
+        {"key":"multiple","text":"*","additionalText":"multiple"},
+        {"key":"divide","text":"/","additionalText":"divide"}
+    ]
+    
+}
