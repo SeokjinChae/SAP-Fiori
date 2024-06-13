@@ -1,0 +1,143 @@
+<mvc:View controllerName="ssarumsd090.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.f"
+    xmlns:t="sap.ui.table"
+    xmlns:c="sap.ui.core"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:viz.data="sap.viz.ui5.data"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:core="sap.ui.core"
+    xmlns:fb="sap.ui.comp.filterbar">
+<f:DynamicPage id="dynamicPageId" headerExpanded="{/headerExpanded}" toggleHeaderOnTitleClick="{/titleClickable}">
+
+    <f:title>
+        <f:DynamicPageTitle>
+            <f:heading>
+                    <Title text="[SAP ssarum] 실시간 주문 조회" titleStyle="H5"/>
+            </f:heading>
+        </f:DynamicPageTitle>
+    </f:title>
+
+    <f:header>
+        <f:DynamicPageHeader pinnable="true">
+            <fb:FilterBar id="filterbar" persistencyKey="myPersKey" useToolbar="false" search=".onSearch" filterChange=".onFilterChange" afterVariantLoad=".onAfterVariantLoad">
+                <fb:filterGroupItems>
+                    <fb:FilterGroupItem name="OrderID" label="주문번호" groupName="Group1" visibleInFilterBar="true">
+                        <fb:control>
+                            <ComboBox id="idOrderID" placeholder="Select Order ID" items="{orderIDs>/OrderIDs}">
+                                <core:Item key="{orderIDs>Orderno}" text="{orderIDs>Orderno}" />
+                            </ComboBox>
+                        </fb:control>
+                    </fb:FilterGroupItem>
+                    <fb:FilterGroupItem name="CustomerID" label="고객번호" groupName="Group1" visibleInFilterBar="true">
+                        <fb:control>
+                            <ComboBox id="idCustomerID" placeholder="Select Customer ID" items="{customerIDs>/CustomerIDs}">
+                                <core:Item key="{customerIDs>Custno}" text="{customerIDs>Custno}" />
+                            </ComboBox>
+                        </fb:control>
+                    </fb:FilterGroupItem>
+                    <fb:FilterGroupItem name="Orderty" label="주문유형" groupName="Group1" visibleInFilterBar="true">
+                        <fb:control>
+                            <ComboBox id="idOrderty" placeholder="Select Order Type" items="{orderTypes>/OrderTypes}">
+                                <core:Item key="{orderTypes>key}" text="{orderTypes>text}" />
+                            </ComboBox>
+                        </fb:control>
+                    </fb:FilterGroupItem>
+                    <fb:FilterGroupItem name="Orderdate" label="주문일자" groupName="Group1" visibleInFilterBar="true">
+                        <fb:control>
+                            <DateRangeSelection 
+                            id="idOrderDate" 
+                            displayFormat="yyyy.MM.dd"
+                            dateValue="{search>/OrderDate_start}"
+                            secondDateValue="{search>/OrderDate_end}"></DateRangeSelection>
+                        </fb:control>
+                    </fb:FilterGroupItem>
+                </fb:filterGroupItems>
+            </fb:FilterBar>
+        </f:DynamicPageHeader>
+    </f:header>
+
+    <f:content>
+        <VBox>
+            <Table
+                id="sd060Table"
+                inset="false"
+                items="{/ZBBC_SD_liveSet}"
+                mode="SingleSelectMaster"
+                selectionChange="onSelectionChange"
+                class="sapFDynamicPageAlignContent"
+                width="auto">
+                <columns>
+                    <Column>
+                        <Text text="주문번호"/>
+                    </Column>
+                    <Column>
+                        <Text text="고객번호"/>
+                    </Column>
+                    <Column>
+                        <Text text="주문유형"/>
+                    </Column>
+                    <Column>
+                        <Text text="주문일자"/>
+                    </Column>
+                    <Column hAlign="End">
+                        <Text text="주문총금액"/>
+                    </Column>
+                    <Column>
+                        <Text text="통화"/>
+                    </Column>
+                    <Column>
+                        <Text text="배송지"/>
+                    </Column>
+                    <Column>
+                        <Text text="주문상태"/>
+                    </Column>  
+                    <Column>
+                        <Text text="구독주문상태"/>
+                    </Column>
+                    <Column>
+                        <Text text="배송예정일자"/>
+                    </Column>  
+                </columns>
+                <items>
+                    <ColumnListItem 
+                        type="Active"
+                        vAlign="Middle" 
+                        press="onTableItemPress">
+                        <cells>
+                            <Text text="{Orderno}" />
+                            <Text text="{Custno}" />
+                            <Text text="{
+                                path : 'Orderty',
+                                formatter: '.fnOrderTypeFormatter'}" />
+                            <Text text="{
+                                path : 'Orderdate',
+                                formatter: '.fnDateToString'}" />
+                            <Text text="{
+                                parts: [{path: 'Ptotal'}, {path: 'Currency'}],
+                                type: 'sap.ui.model.type.Currency',
+                                formatOptions: {
+                                    showMeasure: false
+                                }
+                            }" textAlign="End"/>
+                            <Text text="{Currency}" />
+                            <Text text="{Shipadd}" />
+                            <Text text="{
+                                path : 'Ordstat',
+                                formatter: '.fnOrderStatusFormatter'}" />
+                            <Text text="{
+                                path : 'Subordstat',
+                                formatter: '.fnSubOrderStatusFormatter'}" />
+                            <Text text="{
+                                path : 'Shipdate',
+                                formatter: '.fnDateToString'}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </VBox>
+    </f:content>
+</f:DynamicPage>
+</mvc:View>

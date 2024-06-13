@@ -27,7 +27,7 @@
                         
                         <f:FormElement label="Name">
 							<f:fields>
-								<Text text="{SupplierName}" />
+								<Text text="{ShipName}" />
 							</f:fields>
 						</f:FormElement>
 					</f:formElements>

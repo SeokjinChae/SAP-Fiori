@@ -1,0 +1,55 @@
+<mvc:View controllerName="odata.project0909.controller.Detail"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+	xmlns:layout="sap.ui.layout"
+    xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:core="sap.ui.core"
+    xmlns:f = "sap.ui.layout.form">
+    <Page showNavButton="true" navButtonPress="onNavBack">
+        <content>
+            <!-- <Text id="idText" text="DetailView" ></Text>
+            <Text text=""></Text> -->
+
+            <f:Form id="idForm" editable="true">
+                <f:title>
+                    <core:Title text="Order Detail" />
+                </f:title>
+                <f:layout>
+                    <f:ColumnLayout
+                        columnsM="2"
+                        columnsL="3"
+                        columnsXL="4"
+                    />
+                </f:layout>
+                <f:formContainers>
+                    <f:FormContainer title="Group 1">
+                        <f:formElements>
+                            <f:FormElement label="OrderID">
+                                <f:fields>
+                                    <Text text="{OrderID}" id="name1"/>
+                                </f:fields>
+                            </f:FormElement>  
+                            <f:FormElement label="ShipName">
+                                <f:fields>
+                                    <Text text="{ShipName}" id="name2"/>
+                                </f:fields>
+                            </f:FormElement>   
+                            <f:FormElement label="RequiredDate">
+                                <f:fields>
+                                    <Text text="{RequiredDate}" id="name3"/>
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="ShipCity">
+                                <f:fields>
+                                    <Text text="{ShipCity}" id="name4"/>
+                                </f:fields>
+                            </f:FormElement>
+                        </f:formElements>
+                    </f:FormContainer>
+                </f:formContainers>
+            </f:Form>
+
+
+        </content>
+    </Page>
+</mvc:View>

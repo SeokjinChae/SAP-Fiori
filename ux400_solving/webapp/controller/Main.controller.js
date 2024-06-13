@@ -61,19 +61,35 @@ sap.ui.define([
                 var aHistory = oModel.getProperty("/history");
                 var oInput = oEvent.getSource();
 
-                if(oEvent.mParameters.value>=1 && oEvent.mParameters.value<=100){
+                // if(oEvent.mParameters.value>=1 && oEvent.mParameters.value<=100){
     
+                //     aHistory.push({
+                //         a: oEvent.mParameters.value
+                //     })
+    
+                //     oModel.setProperty("/history", aHistory)
+                // }
+
+                // else{
+                //     oInput.setValueState(sap.ui.core.ValueState.Error);
+                //     oInput.setValueStateText("Please enter a number between 1 and 100.");
+                // }
+
+                if (oEvent.mParameters.value === "") {
+                    // Handle the case where the value is blank
+                    oInput.setValueState(sap.ui.core.ValueState.Error);
+                    oInput.setValueStateText("Please enter a value.");
+                } else if (oEvent.mParameters.value >= 1 && oEvent.getParameters().value <= 100) {
                     aHistory.push({
                         a: oEvent.mParameters.value
-                    })
-    
-                    oModel.setProperty("/history", aHistory)
-                }
-
-                else{
+                    });
+                
+                    oModel.setProperty("/history", aHistory);
+                } else {
                     oInput.setValueState(sap.ui.core.ValueState.Error);
                     oInput.setValueStateText("Please enter a number between 1 and 100.");
                 }
+
             }
                 
             

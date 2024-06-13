@@ -96,7 +96,7 @@
                 },
                 {
                     "name": "RouteEmployee",
-                    "pattern": "Employee",
+                    "pattern": "Employee/{key1}/:key2:",
                     "target": [
                         "TargetEmployee"
                     ]
@@ -125,7 +125,6 @@
                 },
 
                 "TargetEmployee" :{
-                    "transition": "show",
                     "viewType": "XML",
                     "viewId": "Employee",
                     "viewName": "Employee"

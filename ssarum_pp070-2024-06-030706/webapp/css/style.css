@@ -1,0 +1,23 @@
+/* CSS style for rounded corners and spacing */
+.rounded-box {
+    border-radius: 20px; /* 모서리 둥글기 정도를 더 크게 조정 */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.calendar-box {
+    margin-right: 20px;
+    padding: 20px;
+}
+
+.chart-box {
+    margin-right: 20px;
+    padding: 20px;
+}
+
+.table-box {
+    margin-top: 50px; /* 테이블과 위 차트 간 간격 */
+    padding: 20px;
+}

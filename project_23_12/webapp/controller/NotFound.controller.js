@@ -31,6 +31,16 @@ sap.ui.define([
                 //브라우저에 쌓인 히스토리에서, 한번 뒤로 가기
                 window.history.go(-1)
             }
-
+            // onNavBack: function(){
+            //     //url 파라미터로 넘기는 데이터가 많으면
+            //     // json모델과 같은 모델을 사용하는게 좋음
+            //     // url에 길이제한 있기 때문
+            //     this.oRouter.navTo("RouteMain12",{
+            //         "query":{
+            //             tab : "okok",
+            //             test: 10
+            //         }
+            //     })
+            // }
         });
     });

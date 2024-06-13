@@ -1,0 +1,66 @@
+ <c:FragmentDefinition xmlns:c = "sap.ui.core" xmlns = "sap.m">
+
+    <!-- sap.m.Dialog -->
+    <Dialog id="idCustomerDialog"
+            contentWidth="40%"
+            title="제목"
+            contentHeight="50%"
+            draggable="true"
+            resizable="true">
+        <content>
+            <Table id="idTablef"
+							sticky="HeaderToolbar,ColumnHeaders"
+							inset="false"
+							items="{/Customers}"
+							mode="SingleSelectMaster"
+							selectionChange="onSelectionChange"
+						class="sapFDynamicPageAlignContent"
+						width="auto">
+						<headerToolbar>
+							<Toolbar>
+								<Title text="Customers" level="H2"/>
+							</Toolbar>
+						</headerToolbar>
+						<columns>
+							<Column
+									width="12em">
+								<!-- 컬럼의 라벨 -->
+								<Text text="CustomerID" />
+							</Column>
+							<Column
+									width="12em">
+								<!-- 컬럼의 라벨 -->
+								<Text text="CompanyName" />
+							</Column>
+							<Column
+									width="12em">
+								<!-- 컬럼의 라벨 -->
+								<Text text="ContactName" />
+							</Column>
+							<Column
+									width="12em">
+								<!-- 컬럼의 라벨 -->
+								<Text text="ContactTitle" />
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem>
+								<!-- cells 안에 컬럼 안쪽에 구성될 내용 넣기 -->
+								<cells>
+									<Text text="{CustomerID}" />
+									<Text text="{CompanyName}" />
+									<Text text="{ContactName}" />
+                                    <Text text="{ContactTitle}" />
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+        </content>
+
+        <!-- 팝업 닫는 버튼 -->
+        <endButton>
+            <Button text="close" icon="sap-icon://decline" press="onClose"></Button>
+        </endButton>
+    </Dialog>
+
+ </c:FragmentDefinition>

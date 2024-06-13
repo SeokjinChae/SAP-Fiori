@@ -1,0 +1,88 @@
+<mvc:View controllerName="ssarumsd090.controller.Detail"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core">
+    <Page id="page" title="{i18n>title}" showNavButton="true" navButtonPress="onNavBack">
+        <f:Form id="idForm" editable="true">
+            <f:title>
+                <core:Title text="Order Detail" />
+            </f:title>
+            <f:layout>
+                <f:ColumnLayout columnsM="2" columnsL="3" columnsXL="4" />
+            </f:layout>
+            <f:formContainers>
+                <f:FormContainer title="Order Information">
+                    <f:formElements>
+                        <f:FormElement label="주문번호">
+                            <f:fields>
+                                <Text text="{Orderno}" />
+                            </f:fields>
+                        </f:FormElement>
+                        <f:FormElement label="고객번호">
+                            <f:fields>
+                                <Text text="{Custno}" />
+                            </f:fields>
+                        </f:FormElement>
+                        <f:FormElement label="주문총금액">
+                            <f:fields>
+                                <Text text="{
+                                    parts: [{path: 'Ptotal'}, {path: 'Currency'}],
+                                    type: 'sap.ui.model.type.Currency',
+                                    formatOptions: {
+                                        showMeasure: false
+                                    }
+                                }" textAlign="End"/>
+                            </f:fields>
+                        </f:FormElement>
+                    </f:formElements>
+                </f:FormContainer>
+            </f:formContainers>
+        </f:Form>
+         <Table visible="true"
+                id="item_sd050"
+                inset="false"
+                items="{/ZBBT_SD050Set}"
+                mode="SingleSelectMaster"
+                class="sapFDynamicPageAlignContent"
+                width="auto">
+                <columns>
+                    <Column>
+                        <Text text="자재코드"/>
+                    </Column>
+                    <Column>
+                        <Text text="수량"/>
+                    </Column>            
+                    <Column>
+                        <Text text="단위"/>
+                    </Column>       
+                    <Column hAlign="End">
+                        <Text text="금액"/>
+                    </Column>   
+                </columns>
+                <items>
+                    <ColumnListItem >
+                        <cells>
+                            <Text text="{Matno}" />
+                        </cells>       
+                        <cells>
+                            <Text text="{Quantity}" />
+                        </cells>          
+                        <cells>
+                            <Text text="{Unit}" />
+                        </cells>  
+                        <cells>
+                            <Text text="{
+                                parts: [{path: 'Pdtotal'}, {path: 'Currency'}],
+                                type: 'sap.ui.model.type.Currency',
+                                formatOptions: {
+                                    showMeasure: false
+                                }
+                            }" textAlign="End"/>
+                        </cells>  
+                    </ColumnListItem>
+                </items>
+            </Table>
+
+    </Page>
+</mvc:View>

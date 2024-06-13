@@ -17,8 +17,8 @@
                 <Input id="idInput0"/>
                 <Select id="idSelect" width= "100%" showSecondaryValues="true" items="{test>/datas}">
 						<core:ListItem key="{test>key}" text="{test>text}" additionalText="{test>additionalText}"/> 
-						<!--  %%%%%%%%%%%%%%%%5oo> oo   모든 인덱스 접근하기 위한 상대경로%%%%%%%%%%%%%%%%%%%%% -->
-                        <!-- <core:ListItem key="plus" text="+" additionalText="plus"/>
+						<!--  %%%%%%%%%%%%%%%%oo> oo   모든 인덱스 접근하기 위한 상대경로%%%%%%%%%%%%%%%%%%%%% -->
+                   <!-- <core:ListItem key="plus" text="+" additionalText="plus"/>
                         <core:ListItem key="minus" text="-" additionalText="minus"/>
                         <core:ListItem key="multiple" text="*" additionalText="multiple"/>
                         <core:ListItem key="divide" text="/" additionalText="divide"/> -->

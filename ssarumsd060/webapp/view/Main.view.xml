@@ -1,0 +1,138 @@
+<mvc:View controllerName="ssarumsd060.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:t="sap.ui.table"
+    xmlns:c="sap.ui.core"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:viz.data="sap.viz.ui5.data"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:core="sap.ui.core">
+    <Page id="page" title="{i18n>title}" busyIndicatorDelay="0">
+        <content>
+            <l:Grid>
+                <VBox>
+                    <layoutData>
+                        <l:GridData span="XL12 L12 M12 S12"/>
+                    </layoutData>
+                    <HBox>
+                        <DatePicker id="startDate" width="auto" placeholder="Start Date" value="{
+                            path: '/startDate',
+                            type: 'sap.ui.model.type.Date',
+                            formatOptions: {
+                                pattern: 'yyyy-MM-dd'
+                            }
+                        }"/>
+                        <DatePicker id="endDate" width="auto" placeholder="End Date" value="{
+                            path: '/endDate',
+                            type: 'sap.ui.model.type.Date',
+                            formatOptions: {
+                                pattern: 'yyyy-MM-dd'
+                            }
+                        }"/>
+                        <ComboBox id="matnoComboBox" placeholder="Select Material" items="{odata>/ZBBC_SD_MYSALESet}">
+                            <core:Item key="{odata>Matno}" text="{odata>Matno}" />
+                        </ComboBox>
+                        <Button text="조회" press="onFilterData" />
+                    </HBox>
+                </VBox>
+            </l:Grid>
+
+            <l:Grid>
+                <VBox>
+                    <layoutData>
+                        <l:GridData span="XL12 L12 M12 S12"/>
+                    </layoutData>
+                    <viz:VizFrame 
+                        id="Chart" 
+                        uiConfig="{applicationSet:'fiori'}"
+                        vizProperties="{
+                            'title' : { 'visible' : true , text : '상품별 매출량 비교'},
+                            'legendGroup':{layout:{position: 'right'}},
+                            'plotArea': {
+                                drawingEffect: 'glossy',
+                                dataLabel: { visible: true, type:'value'},
+                                colorPalette:['#B5B2FF', '#B2EBF4', '#B7F0B1', '#FFE08C', '#FFC19E', '#FFA7A7']
+                            }
+                        }"
+                        width="1000px"
+                        vizType='pie'
+                        selectData="onSelectData">
+                        <viz:dataset>
+                            <viz.data:FlattenedDataset data="{chartData>/results}">
+                                <viz.data:dimensions>
+                                    <viz.data:DimensionDefinition name="자재번호" value="{chartData>Matno}" />
+                                </viz.data:dimensions>
+                                <viz.data:measures>
+                                    <viz.data:MeasureDefinition name="매출액" value="{chartData>Pdtotal}" />
+                                </viz.data:measures>
+                            </viz.data:FlattenedDataset>
+                        </viz:dataset>
+                        <viz:feeds>
+                            <viz.feeds:FeedItem uid="size" type="Measure" values="매출액" />
+                            <viz.feeds:FeedItem uid="color" type="Dimension" values="자재번호" />
+                        </viz:feeds>
+                    </viz:VizFrame>
+                </VBox>
+            </l:Grid>
+
+            <l:Grid>
+                <VBox>
+                    <layoutData>
+                        <l:GridData span="XL12 L12 M12 S12"/>
+                    </layoutData>
+                    <!-- <Table
+                        id="sd060Table"
+                        inset="false"
+                        items="{tableData>/results}">
+                        <columns>
+                            <Column>
+                                <Text text="주문번호"/>
+                            </Column>
+                            <Column>
+                                <Text text="자재번호"/>
+                            </Column>
+                            <Column>
+                                <Text text="주문일자"/>
+                            </Column>
+                            <Column hAlign="End">
+                                <Text text="주문금액"/>
+                            </Column>
+                            <Column>
+                                <Text text="통화"/>
+                            </Column>
+                            <Column>
+                                <Text text="수량"/>
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem 
+                                type="Active"
+                                vAlign="Middle" 
+                                press="onTableItemPress">
+                                <cells>
+                                    <Text text="{tableData>Orderno}" />
+                                    <Text text="{tableData>Matno}" />
+                                    <Text text="{
+                                        path : 'tableData>Orderdate',
+                                        formatter: '.fnDateToString'}" />
+                                    <Text text="{
+                                        parts: [{path: 'tableData>Pdtotal'}, {path: 'tableData>Currency'}],
+                                        type: 'sap.ui.model.type.Currency',
+                                        formatOptions: {
+                                            showMeasure: false
+                                        }
+                                    }" textAlign="End"/>
+                                    <Text text="{tableData>Currency}" />    
+                                    <Text text="{path: 'tableData>Quantity', type: 'sap.ui.model.type.Integer'}" />  
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table> -->
+                </VBox>
+            </l:Grid>
+
+        </content>
+    </Page>
+</mvc:View>
